@@ -1,23 +1,22 @@
 {
   "manifest_version": 3,
-  "name": "PsuedoCache",
-  "version": "1.0.1",
+  "name": "Quick Books",
+  "version": "0.1.1",
   "author": "Kennan Budnik, Stephen Lee",
   "description": "Hopefully this works",
-  "permissions": [
-    "unlimitedStorage"
-  ],
+  "permissions": [ "activeTab", "storage", "tabs" ],
+  "host_permissions": [ "https://*" ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
       "matches": [ "<all_urls>" ],
       "js": [ "content.js" ]
     }
   ],
-  "background": {
-    "service_worker": "background.js"
-  },
   "action": {
     "default_popup": "index.html",
-    "default_title": "Visit your cached links"
+    "default_title": "View, visit, and delete your links quickly"
   }
 }
