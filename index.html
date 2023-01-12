@@ -14,11 +14,20 @@
     <meta charset="utf-8">
     <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
     <meta http-equiv = "X-UA-Compatible" content = "ie=edge">
-    <title>DistractMeNot Chrome Extension</title>
+    <title>Psuedo Cache Chrome Extension</title>
     <link href = "style.css" rel = "stylesheet" type = "text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
   <body>
-
-    <script src = "scripts.js"></script>
+    <script defer src = "scripts.js"></script>
+    <h1>Pseudo Cache</h1>
+    <div class="horizontal-line-divider"></div>
+    <button class="add-button"><span class="material-symbols-outlined plus-icon">add</span></button><span>Add Link</span>
+    <div class="horizontal-line-divider"></div>
+    <div class="link-items">
+      <ul>
+        <li><a href="https://www.google.com" target="_blank">Google Homepage</a><button class="minus-button"><span class="material-symbols-outlined minus-icon">remove</span></button></li>
+      </ul>
+    </div>
   </body>
 </html>
