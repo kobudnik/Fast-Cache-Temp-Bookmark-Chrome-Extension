@@ -5,14 +5,12 @@
 // Project Repository URI: https://github.com/
 // Description: Handles all the webpage level activities (e.g. manipulating page data, etc.)
 // License: MIT
-// console.log(window.location.href);
-// alert('Hello world from ' + document.title); //Hello world from https://www.newyorker.com
 
+chrome.runtime.onMessage.addListener((msg, sender, response) => {
+  // First, validate the message’s structure.
+  if (msg.subject === 'DOMInfo') {
+    const location = window.location.href;
+    const title = window.document.title;
+    response({location, title});
+  }});
 
-// console.log('Content script works!');
-// console.log('Must reload extension for modifications to take effect.');
-
-// const docTest = document.querySelector(".quick-link-container");
-// console.log(docTest);
-// console.log(window.location);
-// console.log(document.title)

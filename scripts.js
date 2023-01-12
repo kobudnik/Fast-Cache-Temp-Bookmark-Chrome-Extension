@@ -1,8 +1,6 @@
 // Handles your frontend UI logic.
 document.addEventListener('DOMContentLoaded', () => {
   const itemList = document.querySelector(".link-list");
-  const addButton = document.querySelector(".add-button");
-
   const entries = {...localStorage};
   const webTitles = Object.keys(entries);
   const urls = Object.values(entries);
@@ -33,7 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  addButton.addEventListener('click', (e) => {
-    console.log('addButton clicked');
+  const getLocation = (async () => {
+    const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+    const response = await chrome.tabs.sendMessage(tab.id, {subject: 'DOMInfo'});
+    return response;
+  })()
+  .then(response => {
+    const addButton = document.querySelector(".add-button");
+    addButton.addEventListener('click', () => {
+      localStorage.setItem(response.title, response.location);
+      window.location.reload();
+    })
   });
 });

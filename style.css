@@ -91,6 +91,8 @@ button {
 }
 
 ul {
+  display: flex;
+  flex-direction: column-reverse;
   list-style-type: none;
   padding-inline-start: 20px;
 }
