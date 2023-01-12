@@ -3,9 +3,9 @@
   "name": "Quick Books",
   "version": "0.1.1",
   "author": "Kennan Budnik, Stephen Lee",
-  "description": "Hopefully this works",
+  "description": "Cache-like extension ",
   "permissions": [ "activeTab", "storage", "tabs" ],
-  "host_permissions": [ "https://*" ],
+  "host_permissions": [ "https://*/*" ],
   "background": {
     "service_worker": "background.js"
   },
