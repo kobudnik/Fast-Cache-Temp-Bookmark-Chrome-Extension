@@ -53,6 +53,15 @@ button {
   color: #F0F0F0;
 }
 
+.add-button:hover {
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.15);
+}
+
+.add-button:active {
+  background-color: #6fa757;
+  border-width: 2px;
+}
+
 .minus-button {
   border-radius: 10px;
   margin: 5px;
@@ -70,12 +79,13 @@ button {
   color: #FF7C75;
 }
 
-.add-button:hover{
+.minus-button:hover{
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.15);
 }
 
-.minus-button:hover{
-  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.15);
+.minus-button:active {
+  background-color: #bfbfbf;
+  border-width: 2px;
 }
 
 .horizontal-line-divider {

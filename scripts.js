@@ -8,30 +8,33 @@ document.addEventListener('DOMContentLoaded', () => {
   for (let i = 0; i < webTitles.length; i++) {
     const listItem = document.createElement("li");
     const link = document.createElement("a");
+
     link.innerText = webTitles[i];
     link.href = urls[i];
     link.target = "_blank";
-    const button = document.createElement("button");
-    button.setAttribute("id", `${i}`);
-    button.classList.add("minus-button");
+
+    const minusButton = document.createElement("button");
+    minusButton.setAttribute("id", `${i}`);
+    minusButton.classList.add("minus-button");
+    
     const span = document.createElement("span");
     span.classList.add("material-symbols-outlined"); 
     span.classList.add("minus-icon");
     span.innerText = 'remove';
 
-    button.appendChild(span);
+    minusButton.appendChild(span);
     listItem.appendChild(link);
-    listItem.appendChild(button);
+    listItem.appendChild(minusButton);
     itemList.appendChild(listItem);
 
-    button.addEventListener('click', (e) => {
+    minusButton.addEventListener('click', (e) => {
       const id = e.target.parentNode.id;
       e.target.parentNode.parentNode.remove();
       localStorage.removeItem(webTitles[id]);
     });
   }
 
-  const getLocation = (async () => {
+  (async () => {
     const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
     const response = await chrome.tabs.sendMessage(tab.id, {subject: 'DOMInfo'});
     return response;
