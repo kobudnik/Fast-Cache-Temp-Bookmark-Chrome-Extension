@@ -1,7 +1,7 @@
 // Handles your frontend UI logic.
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   const itemList = document.querySelector(".link-list");
-  const entries = {...localStorage};
+  const entries = { ...localStorage };
   const webTitles = Object.keys(entries);
   const urls = Object.values(entries);
 
@@ -16,18 +16,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const minusButton = document.createElement("button");
     minusButton.setAttribute("id", `${i}`);
     minusButton.classList.add("minus-button");
-    
+
     const span = document.createElement("span");
-    span.classList.add("material-symbols-outlined"); 
+    span.classList.add("material-symbols-outlined");
     span.classList.add("minus-icon");
-    span.innerText = 'remove';
+    span.innerText = "remove";
 
     minusButton.appendChild(span);
     listItem.appendChild(link);
     listItem.appendChild(minusButton);
     itemList.appendChild(listItem);
 
-    minusButton.addEventListener('click', (e) => {
+    minusButton.addEventListener("click", (e) => {
       const id = e.target.parentNode.id;
       e.target.parentNode.parentNode.remove();
       localStorage.removeItem(webTitles[id]);
@@ -35,15 +35,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   (async () => {
-    const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
-    const response = await chrome.tabs.sendMessage(tab.id, {subject: 'DOMInfo'});
+    const [tab] = await chrome.tabs.query({
+      active: true,
+      lastFocusedWindow: true,
+    });
+    const response = await chrome.tabs.sendMessage(tab.id, {
+      subject: "DOMInfo",
+    });
     return response;
-  })()
-  .then(response => {
+  })().then((response) => {
     const addButton = document.querySelector(".add-button");
-    addButton.addEventListener('click', () => {
+    addButton.addEventListener("click", () => {
       localStorage.setItem(response.title, response.location);
       window.location.reload();
-    })
+    });
   });
 });
