@@ -3,14 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const itemList = document.querySelector(".link-list");
   const entries = { ...localStorage };
   const webTitles = Object.keys(entries);
-  const urls = Object.values(entries);
 
   for (let i = 0; i < webTitles.length; i++) {
     const listItem = document.createElement("li");
     const link = document.createElement("a");
 
     link.innerText = webTitles[i];
-    link.href = urls[i];
+    link.href = entries[webTitles[i]];
     link.target = "_blank";
 
     const minusButton = document.createElement("button");
@@ -18,8 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     minusButton.classList.add("minus-button");
 
     const span = document.createElement("span");
-    span.classList.add("material-symbols-outlined");
-    span.classList.add("minus-icon");
+    span.classList.add("material-symbols-outlined", "minus-icon");
     span.innerText = "remove";
 
     minusButton.appendChild(span);
@@ -45,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return response;
   })().then((response) => {
     const addButton = document.querySelector(".add-button");
+
     addButton.addEventListener("click", () => {
       localStorage.setItem(response.title, response.location);
       window.location.reload();
